@@ -12,7 +12,6 @@ namespace GetYouPet.Services.Services
         Task<PetDto> CreatePet(PetModel petModel);
         Task UpdatePet(PetModel petModel);
         Task DeletePet(Guid id);
-        Task UpdatePet();
     }
     public class PetService : IPetService
     {
