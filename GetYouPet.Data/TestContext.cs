@@ -1,9 +1,10 @@
 ﻿using GetYouPet.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace GetYouPet.Data
 {
-    public class TestContext
+    public class TestContext : DbContext
     {
         public TestContext(DbContextOptions<TestContext> options) : base(options)
         {
