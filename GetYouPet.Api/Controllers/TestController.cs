@@ -38,15 +38,15 @@ namespace GetYouPet.Api.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdatePet(PetModel petModel)
         {
-            var updatedPet = await petService.UpdatePet(petModel);
-            return Ok(updatedPet);
+            await petService.UpdatePet(petModel);
+            return Ok("Pet updated successfully");
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePet(Guid id)
         {
-            var updatedPet = await petService.DeletePet(id);
-            return Ok(updatedPet);
+            await petService.DeletePet(id);
+            return Ok("Pet deleted");
         }
     }
 }
