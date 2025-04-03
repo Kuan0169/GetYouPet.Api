@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\GetYouPet.Data\GetYouPet.Data.csproj" />
+  </ItemGroup>
+
 </Project>
