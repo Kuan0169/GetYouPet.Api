@@ -8,5 +8,9 @@ namespace GetYouPet.Services.Models
 {
     public class PetDto
     {
+        public Guid Id { get; set; }
+        public required string Name { get; set; }
+        public required string Species { get; set; }
+        public required int Age { get; set; }
     }
 }

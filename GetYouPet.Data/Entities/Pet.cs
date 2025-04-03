@@ -12,7 +12,7 @@ namespace GetYouPet.Data.Entities
         [Key]
         public int Id { get; set; }
         public required string Name { get; set; }
-        public required string Speices { get; set; }
+        public required string Species { get; set; }
         public required int Age { get; set; }
         public required Guid PetId { get; set; }
     }
