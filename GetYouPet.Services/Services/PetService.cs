@@ -1,4 +1,4 @@
-﻿namespace GetYouPet.Services.Services
+﻿namespace GetYouPet.Services
 {
     public class PetService
     {
