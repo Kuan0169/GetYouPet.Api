@@ -63,9 +63,9 @@ namespace GetYouPet.Tests.TestServiceTest
             // Arrange
             var petId = Guid.NewGuid();
             // Act
-            var result = await Assert.ThrowsAsync<InvalidOperationException>(() => petService.GetPetById(petId));
+            var result = await Assert.ThrowsAsync<Exception>(() => petService.GetPetById(petId));
             // Assert
-            Assert.Equal("No pet found with the given ID.", result.Message);
+            Assert.Equal("Pet not found", result.Message);
         }
 
         [Fact]
@@ -90,16 +90,30 @@ namespace GetYouPet.Tests.TestServiceTest
         {
             // Arrange
             var petId = Guid.NewGuid();
-            var existingPet = new Pet { PetId = petId, Name = "OldName", Species = "Dog", Age = 4 };
+            var existingPet = new Pet 
+            { 
+                PetId = petId, 
+                Name = "OldName", 
+                Species = "Dog", 
+                Age = 4 
+            };
             context.Pet.Add(existingPet);
             await context.SaveChangesAsync();
 
             // Act
-            var petModel = new PetModel { Id = petId, Name = "NewName", Species = "Dog", Age = 4 };
+            var petModel = new PetModel 
+            {
+                Id = petId, 
+                Name = "NewName", 
+                Species = "Dog", 
+                Age = 4 
+            };
             await petService.UpdatePet(petModel);
 
             // Assert: 直接查询数据库验证更新
-            var updatedPet = await context.Pet.FindAsync(petId);
+            var updatedPet = await context.Pet.FirstOrDefaultAsync( p => p.PetId == petId);
+
+            Assert.NotNull(updatedPet);
             Assert.Equal("NewName", updatedPet.Name);
         }
 
@@ -116,7 +130,7 @@ namespace GetYouPet.Tests.TestServiceTest
             await petService.DeletePet(petId);
 
             // Assert
-            var deletedPet = await context.Pet.FindAsync(petId);
+            var deletedPet = await context.Pet.FirstOrDefaultAsync(p => p.PetId == petId);
             Assert.Null(deletedPet);
         }
 

@@ -77,13 +77,19 @@ namespace GetYouPet.Services.Services
             {
                 throw new Exception("Pet not found");
             }
+
+            pet.Name = petModel.Name;
+            pet.Species = petModel.Species;
+            pet.Age = petModel.Age;
+
             context.Pet.Update(pet);
             await context.SaveChangesAsync();
         }
 
         public async Task DeletePet(Guid id)
         {
-            var pet = await context.Pet.Where(c => c.PetId == id).ExecuteDeleteAsync();
+            var pet = await context.Pet.FirstOrDefaultAsync(p => p.PetId == id);
+            context.Pet.Remove(pet); ;
             await context.SaveChangesAsync();
         }
     }
