@@ -1,7 +1,6 @@
 ﻿using GetYouPet.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 
-
 namespace GetYouPet.Data
 {
     public class TestContext : DbContext
