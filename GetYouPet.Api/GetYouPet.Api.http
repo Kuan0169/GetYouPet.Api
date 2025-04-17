@@ -1,6 +1,6 @@
-@GetYouPet.Api_HostAddress = http://localhost:5188
+@GetYouPet.Api_HostAddress = http://localhost:7093
 
-GET {{GetYouPet.Api_HostAddress}}/weatherforecast/
+GET {{GetYouPet.Api_HostAddress}}/GetYouPet.Api/
 Accept: application/json
 
 ###
