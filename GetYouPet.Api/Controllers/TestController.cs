@@ -5,10 +5,10 @@ using GetYouPet.Services.Models;
 namespace GetYouPet.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TestController(IPetService petService) : ControllerBase
     {
-        private readonly IPetService petService;
+        private readonly IPetService _petService = petService;
 
         [HttpGet]
         public async Task<IActionResult> GetAllPets()
@@ -17,7 +17,8 @@ namespace GetYouPet.Api.Controllers
             return Ok(pets);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet]
+        [Route("GetPetById/{id}")]
         public async Task<IActionResult> GetPetById(Guid id)
         {
             var pet = await petService.GetPetById(id);
@@ -25,6 +26,7 @@ namespace GetYouPet.Api.Controllers
         }
 
         [HttpPost]
+        [Route("CreatePet")]
         public async Task<IActionResult> CreatePet(PetModel petModel)
         {
             if (petModel == null)
@@ -35,7 +37,8 @@ namespace GetYouPet.Api.Controllers
             return Ok(createdPet);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut]
+        [Route("UpdatePet/{id}")]
         public async Task<IActionResult> UpdatePet(PetModel petModel)
         {
             await petService.UpdatePet(petModel);
@@ -43,6 +46,7 @@ namespace GetYouPet.Api.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Route("DeletePet/{id}")]
         public async Task<IActionResult> DeletePet(Guid id)
         {
             await petService.DeletePet(id);
