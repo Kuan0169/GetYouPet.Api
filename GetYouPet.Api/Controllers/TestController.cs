@@ -45,7 +45,7 @@ namespace GetYouPet.Api.Controllers
             return Ok("Pet updated successfully");
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete]
         [Route("DeletePet/{id}")]
         public async Task<IActionResult> DeletePet(Guid id)
         {
